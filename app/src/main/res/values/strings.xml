@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">AplicacionAndroid</string>
+    <string name="app_name">NotFlix</string>
+    <string name="tituloLista">Lista de películas</string>
 </resources>

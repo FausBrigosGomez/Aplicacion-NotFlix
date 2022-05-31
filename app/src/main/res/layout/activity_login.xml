@@ -22,8 +22,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="80dp"
-        android:text="Log in"
+        android:layout_marginEnd="40dp"
+        android:text="¡Entrar!"
         app:layout_constraintBottom_toBottomOf="@+id/btRegistro"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/btRegistro"
         app:layout_constraintTop_toTopOf="@+id/btRegistro"
         app:layout_constraintVertical_bias="0.0" />
@@ -32,8 +34,8 @@
         android:id="@+id/btRegistro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="108dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="104dp"
         android:text="Registrarme"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout2" />

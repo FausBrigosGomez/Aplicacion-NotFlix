@@ -16,6 +16,7 @@
             android:exported="false" />
         <activity
             android:name=".activities.ListActivity"
+            android:label="@string/tituloLista"
             android:exported="true" />
         <activity
             android:name=".activities.RegistroActivity"

@@ -5,6 +5,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import com.example.aplicacionandroid.R
 import com.example.aplicacionandroid.databinding.ActivityDetallesPeliculaBinding
@@ -23,17 +24,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 class DetallesPeliculaActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityDetallesPeliculaBinding
-
-    /**
-     *  TODO:
-     *  METER PELI REAL
-     *  ACTUALIZAR BOTON
-     *
-     *
-     *
-     *
-     *
-     */
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -62,6 +52,20 @@ class DetallesPeliculaActivity : AppCompatActivity() {
         //intent que dirige a ListActivity
         val intentList = Intent(context, ListActivity::class.java)
 
+        /**
+            CAMBIAR EL TITULO SEGUN SI SE CREA O SE ACTUALIZA
+         */
+        if(id == null){
+            this.setTitle("Nueva película: ")
+            binding.btGuardar.text = "¡Crear película!"
+            binding.btBorrar.visibility = View.GONE
+        }
+        else{
+            this.setTitle(binding.titulo.text.toString())
+            binding.btGuardar.text = "Actualizar"
+        }
+
+
 
         /**
         CODIGO BOTÓN DE ACTUALIZAR/GUARDAR ↓
@@ -74,12 +78,12 @@ class DetallesPeliculaActivity : AppCompatActivity() {
             val genero = binding.genero.text.toString()
             val sinopsis = binding.sinopsis.text.toString()
             val nota = binding.nota.text.toString()
-            // val caratula = binding.ivCaratula.   ??
+            val caratula = binding.ivCaratula.toString()
 
             //COMPROBAR SI HAY ALGUNO NULO -> mensaje de error si pasa
 
             //meter id? ↓
-            if (titulo.isEmpty() || director.isEmpty() || genero.isEmpty() || sinopsis.isEmpty() || nota.isEmpty()) {
+            if (titulo.isEmpty() || director.isEmpty() || genero.isEmpty() || sinopsis.isEmpty() || nota.isEmpty() || caratula.isEmpty()) {
                 Toast.makeText(
                     context,
                     "Alguno de los campos de la película están vacíos",
@@ -105,15 +109,6 @@ class DetallesPeliculaActivity : AppCompatActivity() {
                     ) {
                         if (response.code() >= 200 && response.code() < 300) {
                             //se actualiza la película
-
-
-                            /**
-                             * ERRORES:
-                             * me actualiza bien el titulo pero no el nombre del director (sin dar error)
-                             * en el resto de películas me da error 400
-                             *
-                             *
-                             */
                             Toast.makeText(
                                 context,
                                 "La película fue actualizada.",
@@ -164,7 +159,7 @@ class DetallesPeliculaActivity : AppCompatActivity() {
                                 .show()
                             startActivity(intentList)
                         } else {
-                            //error al actualizar la película
+                            //error al crear la película
                             Toast.makeText(
                                 context,
                                 "Error al crear la película",
@@ -190,7 +185,19 @@ class DetallesPeliculaActivity : AppCompatActivity() {
             val borrarCall = api_service.delete(id, "Bearer " + token)
             borrarCall.enqueue(object : Callback<Pelicula> {
                 override fun onResponse(call: Call<Pelicula>, response: Response<Pelicula>) {
-
+                    if (response.code() >= 200 && response.code() < 300) {
+                        //se elimina la película
+                        Toast.makeText(context, "La película fue eliminada", Toast.LENGTH_SHORT)
+                            .show()
+                        startActivity(intentList)
+                    } else {
+                        //error al borrar la película
+                        Toast.makeText(
+                            context,
+                            "Error al borrar la película",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
                 }
 
                 override fun onFailure(call: Call<Pelicula>, t: Throwable) {

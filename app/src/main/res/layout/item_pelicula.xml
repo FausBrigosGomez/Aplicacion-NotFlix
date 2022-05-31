@@ -8,10 +8,10 @@
 
     <ImageView
         android:id="@+id/ivCaratula"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="76dp"
+        android:layout_height="74dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@tools:sample/avatars" />
@@ -23,6 +23,8 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="8dp"
         android:text="Título"
+        android:textSize="20dp"
+        android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/ivCaratula"
         app:layout_constraintTop_toTopOf="@+id/ivCaratula" />
 
@@ -31,7 +33,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="12dp"
         android:text="Director"
         app:layout_constraintStart_toEndOf="@+id/ivCaratula"
         app:layout_constraintTop_toBottomOf="@+id/tvTitulo" />
@@ -41,7 +43,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="12dp"
         android:text="Genero"
         app:layout_constraintStart_toEndOf="@+id/ivCaratula"
         app:layout_constraintTop_toBottomOf="@+id/tvDirector" />
