@@ -9,4 +9,4 @@ Esta aplicación tiene implementadas las siguientes pantallas:
 - Pantalla de creación de película
 
 ## Pantallas de la aplicación
-<img src="doc/imagenes/registro.png" width="400"></img>
+<img src="docs/imagenes/registro.png" width="400"></img>
