@@ -10,3 +10,4 @@ Esta aplicación tiene implementadas las siguientes pantallas:
 
 ## Pantallas de la aplicación
 <img src="docs/imagenes/registro.png" width="400"></img>
+<img src="docs/imagenes/login.png" width="400"></img>
