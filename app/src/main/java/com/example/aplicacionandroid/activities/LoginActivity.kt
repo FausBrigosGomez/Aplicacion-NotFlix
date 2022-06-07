@@ -59,7 +59,9 @@ class LoginActivity : AppCompatActivity() {
                         editor.putString("token", token)
                         editor.apply()
                         val intent = Intent(context, ListActivity::class.java)
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                         startActivity(intent)
+                        finish()
 
                     }
                     else{

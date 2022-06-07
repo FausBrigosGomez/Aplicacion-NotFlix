@@ -36,8 +36,6 @@ class ListActivity : AppCompatActivity() {
         val retrofit = Retrofit.Builder().baseUrl("https://damapi.herokuapp.com/api/v1/").addConverterFactory(
             GsonConverterFactory.create()).client(OkHttpClient()).build()
         val api_service = retrofit.create(ApiService::class.java)
-        Toast.makeText(context, "token: " + token, Toast.LENGTH_SHORT).show()
-
 
         /**
             CODIGO MOSTRAR TODAS LAS PELÍCULAS EN EL RECYCLER VIEW ↓
