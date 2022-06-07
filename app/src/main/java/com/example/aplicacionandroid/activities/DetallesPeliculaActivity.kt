@@ -49,21 +49,7 @@ class DetallesPeliculaActivity : AppCompatActivity() {
         val api_service = retrofit.create(ApiService::class.java)
 
 
-        //intent que dirige a ListActivity
-        val intentList = Intent(context, ListActivity::class.java)
 
-        /**
-            CAMBIAR EL TITULO SEGUN SI SE CREA O SE ACTUALIZA
-         */
-        if(id == null){
-            this.setTitle("Nueva película: ")
-            binding.btGuardar.text = "¡Crear película!"
-            binding.btBorrar.visibility = View.GONE
-        }
-        else{
-            this.setTitle(binding.titulo.text.toString())
-            binding.btGuardar.text = "Actualizar"
-        }
 
 
 
@@ -114,7 +100,7 @@ class DetallesPeliculaActivity : AppCompatActivity() {
                                 "La película fue actualizada.",
                                 Toast.LENGTH_SHORT
                             ).show()
-                            startActivity(intentList)
+                            finish()
                         } else {
                             //error al actualizar la película
 
@@ -157,7 +143,7 @@ class DetallesPeliculaActivity : AppCompatActivity() {
                             //se crea la película
                             Toast.makeText(context, "La película fue creada", Toast.LENGTH_SHORT)
                                 .show()
-                            startActivity(intentList)
+                            finish()
                         } else {
                             //error al crear la película
                             Toast.makeText(
@@ -189,7 +175,7 @@ class DetallesPeliculaActivity : AppCompatActivity() {
                         //se elimina la película
                         Toast.makeText(context, "La película fue eliminada", Toast.LENGTH_SHORT)
                             .show()
-                        startActivity(intentList)
+                        finish()
                     } else {
                         //error al borrar la película
                         Toast.makeText(
@@ -209,10 +195,22 @@ class DetallesPeliculaActivity : AppCompatActivity() {
         }
 
 
+
+
+        /**
+        CAMBIAR EL TITULO SEGUN SI SE CREA O SE ACTUALIZA
+         */
+        if(id == null){
+            this.setTitle("Nueva película")
+            binding.btGuardar.text = "¡Crear película!"
+            binding.btBorrar.visibility = View.GONE
+        }
+        else{
+            binding.btGuardar.text = "Actualizar"
+        }
         /**
         MOSTAR PELI CON RETROFIT ↓
          */
-
         if (id != null) {
 
             val peliculaCall = api_service.getbyid(id, "Bearer " + token)
@@ -227,6 +225,8 @@ class DetallesPeliculaActivity : AppCompatActivity() {
                         binding.genero.setText(p?.genero)
                         binding.sinopsis.setText(p?.sinapsis)
                         binding.nota.setText(p?.nota)
+
+                        context.setTitle(p?.titulo)
                     } else {
                         Toast.makeText(context, response.code().toString(), Toast.LENGTH_SHORT)
                             .show()

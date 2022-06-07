@@ -13,11 +13,15 @@
         android:theme="@style/Theme.AplicacionAndroid">
         <activity
             android:name=".activities.DetallesPeliculaActivity"
-            android:exported="false" />
+            android:exported="false">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.ListActivity" />
+        </activity>
         <activity
             android:name=".activities.ListActivity"
-            android:label="@string/tituloLista"
-            android:exported="true" />
+            android:exported="true"
+            android:label="@string/tituloLista" />
         <activity
             android:name=".activities.RegistroActivity"
             android:exported="false" />

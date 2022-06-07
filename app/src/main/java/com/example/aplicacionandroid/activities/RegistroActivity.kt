@@ -29,6 +29,8 @@ class RegistroActivity : AppCompatActivity() {
         setContentView(binding.root)
         val context = this
 
+        context.setTitle("Registrarse")
+
         /**
             CODIGO PARA REGISTRARSE ↓
          */
