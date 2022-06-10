@@ -8,6 +8,11 @@ Esta aplicación tiene implementadas las siguientes pantallas:
 - Pantalla de detalle de una película
 - Pantalla de creación de película
 
+## Tecnologías usadas
+- Picasso
+- Retrofit: Conexión a un *API REST* para registro e identificación de usuarios así como toda la gestión de las películas (consultas, actualizado y borrado)
+- OkHttp
+
 ## Pantallas de la aplicación
 <img src="docs/imagenes/registro.png" width="400"></img>
 <img src="docs/imagenes/login.png" width="400"></img>
