@@ -29,6 +29,11 @@ class ListActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+
         val context = this
         val prefs = context.getSharedPreferences("SharedPrefs", Context.MODE_PRIVATE)
         val token : String? = prefs.getString("token", "")
@@ -38,7 +43,7 @@ class ListActivity : AppCompatActivity() {
         val api_service = retrofit.create(ApiService::class.java)
 
         /**
-            CODIGO MOSTRAR TODAS LAS PELÍCULAS EN EL RECYCLER VIEW ↓
+        CODIGO MOSTRAR TODAS LAS PELÍCULAS EN EL RECYCLER VIEW ↓
          */
         val listCall = api_service.getAll("Bearer " + token)
         listCall.enqueue(object: Callback<List<Pelicula>>{
@@ -79,12 +84,6 @@ class ListActivity : AppCompatActivity() {
             }
 
         })
-
-
-
-
-
-
     }
 
 

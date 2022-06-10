@@ -13,7 +13,8 @@
         android:theme="@style/Theme.AplicacionAndroid">
         <activity
             android:name=".activities.DetallesPeliculaActivity"
-            android:exported="false">
+            android:exported="false"
+            android:windowSoftInputMode="stateHidden|adjustResize">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activities.ListActivity" />

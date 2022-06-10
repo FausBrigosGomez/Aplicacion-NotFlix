@@ -1,25 +1,24 @@
 package com.example.aplicacionandroid.activities
 
+import android.app.Activity
 import android.content.Context
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import com.example.aplicacionandroid.R
 import com.example.aplicacionandroid.databinding.ActivityDetallesPeliculaBinding
-import com.example.aplicacionandroid.databinding.ActivityRegistroBinding
 import com.example.aplicacionandroid.entidades.Pelicula
 import com.example.aplicacionandroid.retrofit.ApiService
-import com.example.aplicacionandroid.retrofit.Token
-import com.example.aplicacionandroid.retrofit.User
+import com.squareup.picasso.Picasso
 import okhttp3.OkHttpClient
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.lang.Exception
 
 class DetallesPeliculaActivity : AppCompatActivity() {
 
@@ -47,7 +46,6 @@ class DetallesPeliculaActivity : AppCompatActivity() {
                 OkHttpClient()
             ).build()
         val api_service = retrofit.create(ApiService::class.java)
-
 
 
 
@@ -226,6 +224,12 @@ class DetallesPeliculaActivity : AppCompatActivity() {
                         binding.sinopsis.setText(p?.sinapsis)
                         binding.nota.setText(p?.nota)
 
+                        try{
+                            Picasso.get().load(p?.caratula).into(binding.ivCaratula)
+                        }catch(e: Exception){
+                            Toast.makeText(applicationContext, "No se ha podido cargar la imagen", Toast.LENGTH_SHORT).show()
+                        }
+
                         context.setTitle(p?.titulo)
                     } else {
                         Toast.makeText(context, response.code().toString(), Toast.LENGTH_SHORT)
@@ -245,5 +249,12 @@ class DetallesPeliculaActivity : AppCompatActivity() {
 
 
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        val inputMethodManager = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+        inputMethodManager.hideSoftInputFromWindow(currentFocus?.windowToken, 0)
     }
 }
